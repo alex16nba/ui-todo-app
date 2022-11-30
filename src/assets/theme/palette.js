@@ -11,7 +11,7 @@ const palette = {
   },
   text: {
     primary: '#000000',
-    secondary: '#677179',
+    secondary: '#9ea3b2',
   },
   input: {
     border: '#9ea3b2',

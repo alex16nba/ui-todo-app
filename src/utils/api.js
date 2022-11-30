@@ -24,6 +24,7 @@ export const getApiRequest = async (endpoint, params, token) => {
     url,
     {
       headers,
+      params,
     },
   );
 };

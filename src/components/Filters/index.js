@@ -12,7 +12,7 @@ function Filters({ handleFilterTodos }) {
 
       <Todo
         variant="body2"
-        onClick={() => handleFilterTodos('all')}
+        onClick={() => handleFilterTodos('')}
       >
         All
       </Todo>

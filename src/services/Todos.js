@@ -2,8 +2,8 @@ import {
   deleteApiRequest, getApiRequest, postApiRequest, updateApiRequest,
 } from '../utils/api';
 
-export function getTodos() {
-  return getApiRequest('/todos');
+export function getTodos(params) {
+  return getApiRequest('/todos', params);
 }
 
 export function createTodo(data) {

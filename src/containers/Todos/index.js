@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import {
   createTodo, deleteTodo, getTodos, markTodoCompleted, markTodoUncompleted,
 } from '../../services/Todos';
@@ -7,17 +7,16 @@ import {
 // Components
 import TodoItem from '../../components/TodoItem';
 import ContentLayout from '../../components/ContentLayout';
-
-// Assets
-import logo from '../../assets/group.svg';
+import Title from '../../components/Title';
 import Filters from '../../components/Filters';
 
 export default function Todos() {
   const [todos, setTodos] = useState([]);
   const [newTodoValue, setNewTodoValue] = useState('');
+  const [statusValue] = useState('');
 
   const fetchTodos = async () => {
-    const { data } = await getTodos();
+    const { data } = await getTodos({ params: { status: statusValue } });
     setTodos(data?.data);
   };
 
@@ -25,24 +24,31 @@ export default function Todos() {
     const isChecked = e.target.checked;
     const functionToCall = isChecked ? markTodoCompleted : markTodoUncompleted;
     await functionToCall(todoId);
-    const { data } = await getTodos();
+    const { data } = await getTodos({ status: statusValue });
     setTodos(data?.data);
   };
 
-  const handleFilterTodos = (status) => {
-    console.log('statis', status);
+  const handleFilterTodos = async (status) => {
+    const { data } = await getTodos({ status });
+    setTodos(data?.data);
+  };
+
+  const handleTodoCreate = async () => {
+    if (newTodoValue) {
+      await createTodo({ title: newTodoValue });
+      const { data } = await getTodos();
+      setTodos(data?.data);
+      setNewTodoValue('');
+    }
   };
 
   const handleTodoChanges = (e) => {
     setNewTodoValue(e.target.value);
   };
 
-  const handleTodoCreate = async (e) => {
-    if (newTodoValue) {
-      await createTodo({ title: e.target.value });
-      const { data } = await getTodos();
-      setTodos(data?.data);
-      setNewTodoValue('');
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.keyCode === '13') {
+      handleTodoCreate();
     }
   };
 
@@ -58,11 +64,7 @@ export default function Todos() {
 
   return (
     <ContentLayout>
-      <img src={logo} alt="Logo" />
-
-      <Typography variant="h5" my={3} fontWeight={700}>
-        Todo list
-      </Typography>
+      <Title title="Todo list" />
 
       <TextField
         id="standard-basic"
@@ -71,6 +73,7 @@ export default function Todos() {
         fullWidth
         onBlur={handleTodoCreate}
         onChange={handleTodoChanges}
+        onKeyDown={handleKeyDown}
         value={newTodoValue}
       />
 

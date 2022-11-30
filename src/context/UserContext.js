@@ -1,7 +1,8 @@
 import {
-  createContext, useMemo, useState,
+  createContext, useEffect, useMemo, useState,
 } from 'react';
 import { node } from 'prop-types';
+import { getLoggedUser } from '../services/Authentication';
 
 const UserContext = createContext({
   user: {},
@@ -26,6 +27,23 @@ function UserProvider({ children }) {
     setUser,
     setIsLoading,
   }), []);
+
+  const fetchUser = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await getLoggedUser();
+      console.log('DATA', data);
+      setUser(data?.data);
+    } catch (err) {
+      setUser({});
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <UserContext.Provider value={store}>
