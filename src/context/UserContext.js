@@ -32,7 +32,6 @@ function UserProvider({ children }) {
     try {
       setIsLoading(true);
       const { data } = await getLoggedUser();
-      console.log('DATA', data);
       setUser(data?.data);
     } catch (err) {
       setUser({});

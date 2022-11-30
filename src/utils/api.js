@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const baseRoute = process.env.API_ENDPOINT;
-const baseRoute = 'http://localhost:4000';
+const baseRoute = process.env.REACT_APP_API_URL;
 
 export function getHeaders() {
   const token = localStorage.getItem('access_token');
