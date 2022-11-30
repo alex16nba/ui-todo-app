@@ -1,16 +1,16 @@
 import axios from 'axios';
 
 // const baseRoute = process.env.API_ENDPOINT;
-console.log('process.env', process.env);
 const baseRoute = 'http://localhost:4000';
 
-export function getHeaders(token = null) {
+export function getHeaders() {
+  const token = localStorage.getItem('access_token');
   const headers = {
     'Content-Type': 'application/json',
   };
 
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers.Authorization = token;
   }
 
   return headers;
