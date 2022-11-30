@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, TextField, Typography } from '@mui/material';
-import { getTodos, markTodoCompleted, markTodoUncompleted } from '../../services/Todos';
+import {
+  createTodo, deleteTodo, getTodos, markTodoCompleted, markTodoUncompleted,
+} from '../../services/Todos';
 
 // Components
 import TodoItem from '../../components/TodoItem';
@@ -12,16 +14,17 @@ import Filters from '../../components/Filters';
 
 export default function Todos() {
   const [todos, setTodos] = useState([]);
+  const [newTodoValue, setNewTodoValue] = useState('');
 
   const fetchTodos = async () => {
     const { data } = await getTodos();
     setTodos(data?.data);
   };
 
-  const handleChangeUpdateTodo = async (e, todo) => {
+  const handleChangeUpdateTodo = async (e, todoId) => {
     const isChecked = e.target.checked;
     const functionToCall = isChecked ? markTodoCompleted : markTodoUncompleted;
-    await functionToCall(todo.id);
+    await functionToCall(todoId);
     const { data } = await getTodos();
     setTodos(data?.data);
   };
@@ -30,8 +33,23 @@ export default function Todos() {
     console.log('statis', status);
   };
 
-  const handleTodoChanges = () => {
-    console.log('handle add new todo');
+  const handleTodoChanges = (e) => {
+    setNewTodoValue(e.target.value);
+  };
+
+  const handleTodoCreate = async (e) => {
+    if (newTodoValue) {
+      await createTodo({ title: e.target.value });
+      const { data } = await getTodos();
+      setTodos(data?.data);
+      setNewTodoValue('');
+    }
+  };
+
+  const handleDeleteTodo = async (e, todoId) => {
+    await deleteTodo(todoId);
+    const { data } = await getTodos();
+    setTodos(data?.data);
   };
 
   useEffect(() => {
@@ -51,14 +69,17 @@ export default function Todos() {
         label="Add a new todo"
         variant="standard"
         fullWidth
+        onBlur={handleTodoCreate}
         onChange={handleTodoChanges}
+        value={newTodoValue}
       />
 
       <Box mt={2}>
         {todos?.length > 0 && todos.map((item) => (
           <TodoItem
             key={`${item.id}`}
-            handleChange={(e) => handleChangeUpdateTodo(e, item)}
+            handleChange={(e) => handleChangeUpdateTodo(e, item?.id)}
+            handleDelete={(e) => handleDeleteTodo(e, item?.id)}
             label={item?.title}
             checked={item?.status === 'completed'}
           />

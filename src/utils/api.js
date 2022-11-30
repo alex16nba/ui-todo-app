@@ -41,6 +41,19 @@ export const updateApiRequest = async (endpoint, data, token) => {
   );
 };
 
+export const postApiRequest = async (endpoint, data, token) => {
+  const url = `${baseRoute}${endpoint}`;
+  const headers = getHeaders(token);
+
+  return axios.post(
+    url,
+    data,
+    {
+      headers,
+    },
+  );
+};
+
 export const deleteApiRequest = async (endpoint, token) => {
   const url = `${baseRoute}${endpoint}`;
   const headers = getHeaders(token);

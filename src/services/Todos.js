@@ -1,7 +1,13 @@
-import { deleteApiRequest, getApiRequest, updateApiRequest } from '../utils/api';
+import {
+  deleteApiRequest, getApiRequest, postApiRequest, updateApiRequest,
+} from '../utils/api';
 
 export function getTodos() {
   return getApiRequest('/todos');
+}
+
+export function createTodo(data) {
+  return postApiRequest('/todos', data);
 }
 
 export function markTodoCompleted(todoId) {
