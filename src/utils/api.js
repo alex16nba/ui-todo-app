@@ -9,7 +9,7 @@ export function getHeaders() {
   };
 
   if (token) {
-    headers.Authorization = token;
+    headers.Authorization = `Bearer ${token}`;
   }
 
   return headers;

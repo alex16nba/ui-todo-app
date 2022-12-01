@@ -3,6 +3,8 @@ import {
 } from '@mui/material';
 import { string, bool, func } from 'prop-types';
 import CloseIcon from '@mui/icons-material/Close';
+
+// Styles
 import { IconButton } from './index.styled';
 
 function TodoItem(props) {

@@ -1,7 +1,11 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
+
+// Assets
 import theme from './assets/theme/theme';
+
+// Others
 import Router from './Router';
 import { UserProvider } from './context/UserContext';
 

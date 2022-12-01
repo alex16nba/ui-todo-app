@@ -1,10 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+
+// Components
 import ContentLayout from '../../components/ContentLayout';
 import Title from '../../components/Title';
 import AuthForm from '../../components/AuthForm';
+
+// Styles
 import { LinkWrapper } from './index.styled';
+
+// Others
 import { userLogin } from '../../services/Authentication';
 import { UserDispatchContext } from '../../context/UserContext';
 

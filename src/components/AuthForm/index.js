@@ -3,6 +3,8 @@ import { TextField } from '@mui/material';
 import {
   bool, func, node, shape, string,
 } from 'prop-types';
+
+// Styles
 import { FormRoot } from './index.styled';
 
 function AuthForm({

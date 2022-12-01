@@ -1,7 +1,11 @@
 import { Typography } from '@mui/material';
-
 import { func } from 'prop-types';
+
+// Styles
 import { Root, Todo } from './index.styled';
+
+// Others
+import { COMPLETE_STATUS, INCOMPLETE_STATUS } from '../../constants/general';
 
 function Filters({ handleFilterTodos }) {
   return (
@@ -19,14 +23,14 @@ function Filters({ handleFilterTodos }) {
 
       <Todo
         variant="body2"
-        onClick={() => handleFilterTodos('completed')}
+        onClick={() => handleFilterTodos(COMPLETE_STATUS)}
       >
         Completed
       </Todo>
 
       <Todo
         variant="body2"
-        onClick={() => handleFilterTodos('incompleted')}
+        onClick={() => handleFilterTodos(INCOMPLETE_STATUS)}
       >
         Incompleted
       </Todo>

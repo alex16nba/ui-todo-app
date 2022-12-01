@@ -4,13 +4,11 @@ import {
   Routes,
 } from 'react-router-dom';
 
-// Containers
-import Todos from './containers/Todos';
-
 //  Components
 import Layout from './components/Layout';
 
 // Containers
+import Todos from './containers/Todos';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
 

@@ -2,6 +2,8 @@ import {
   createContext, useEffect, useMemo, useState,
 } from 'react';
 import { node } from 'prop-types';
+
+// Others
 import { getLoggedUser } from '../services/Authentication';
 
 const UserContext = createContext({

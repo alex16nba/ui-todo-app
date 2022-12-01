@@ -1,6 +1,8 @@
 import React from 'react';
 import { string } from 'prop-types';
 import { Box, Typography } from '@mui/material';
+
+// Assets
 import logo from '../../assets/group.svg';
 
 function Title({ title, subtitle }) {
@@ -12,7 +14,7 @@ function Title({ title, subtitle }) {
       </Typography>
       {subtitle && (
       <Typography color="textSecondary">
-        {title}
+        {subtitle}
       </Typography>
       )}
     </Box>

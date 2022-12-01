@@ -1,9 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
+// Components
 import ContentLayout from '../../components/ContentLayout';
 import Title from '../../components/Title';
 import AuthForm from '../../components/AuthForm';
+
+// Others
 import { userRegistration } from '../../services/Authentication';
 import { UserDispatchContext } from '../../context/UserContext';
 
@@ -39,8 +43,8 @@ export default function Signup() {
   return (
     <ContentLayout>
       <Title
-        title="Welcome back!"
-        subtitle="Log in to continue."
+        title="Welcome!"
+        subtitle="Sign up to start using Simpledo today!"
       />
 
       <AuthForm

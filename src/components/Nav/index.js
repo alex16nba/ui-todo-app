@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+
+// Styles
 import { Root } from './index.styled';
+
+// Others
 import { UserContext, UserDispatchContext } from '../../context/UserContext';
 
 export default function Nav() {
